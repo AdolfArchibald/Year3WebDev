@@ -34,39 +34,45 @@
             <h1>{{ message }}</h1>
         </div>
 
-        <!-- <h1>{{ message }}</h1>
-        <button v-on:click="showCheckout">{{ itemInCart }} <span class="fa-solid fa-cart-plus"></span> Checkout</button> -->
-
         <main class="container mt-5">
+
             <div v-if="showProduct">
                 <div class="row">
                     <div class="col-md-4" v-for="product in sortedProducts" :key="product.id">
                         <div class="product-card">
+
                             <figure>
                                 <img :src="product.image" alt="Product Image" class="img-fluid">
                             </figure>
+
                             <h2>{{ product.title }}</h2>
                             <p>{{ product.description }}</p>
                             <p>Price: Rs{{ product.price }}</p>
-                            <button class="btn btn-primary" @click="addToCart(product)" v-if="canAddToCart(product)">Add to cart</button>
+
+                            <button class="btn btn-primary" @click="addToCart(product)" :disabled="!canAddToCart(product)">Add to cart</button>
+
                             <span v-if="product.availableInventory === cartCount(product.id)">All out!</span>
                             <span v-else-if="product.availableInventory - cartCount(product.id) < 5">
                                 Only {{ product.availableInventory - cartCount(product.id) }} left!
                             </span>
                             <span v-else>Buy now!</span>
-                            <div v-else>
+
+                            <!-- <div v-else>
                                 <button class="btn btn-secondary" disabled>Add to Cart</button>
                                 No more Product to Add. Supply Limited.
-                            </div>
+                            </div> -->
+
                             <div>
                                 <span v-for="n in product.rating">★</span>
                                 <span v-for="n in 5 - product.rating">☆</span>
                             </div>
+
                         </div>
                     </div>
                 </div>
             </div>
 
+            <!-- Checkout Page -->
             <div v-else>
                 <h1>Welcome to the Check Out Page</h1>
                 <h2>Enter your Information</h2>
