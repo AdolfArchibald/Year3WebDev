@@ -1,0 +1,49 @@
+.header-box {
+    border: 2px solid #ddd;
+    border-radius: 5px;
+    padding: 15px;
+    margin: 20px auto;
+    text-align: center;
+    width: 80%;
+    background-color: #f8f9fa;
+}
+
+.navbar-custom {
+    background-color: #343a40;
+}
+
+.navbar-custom .navbar-brand,
+.navbar-custom .navbar-nav .nav-link {
+    color: #fff;
+}
+
+.product-card {
+    border: 2px solid #ddd; /* Thicker border */
+    border-radius: 5px;
+    padding: 15px;
+    margin-bottom: 20px;
+    text-align: center;
+    min-height: 500px; /* Increased height for more content */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.product-card img {
+    margin-bottom: 10px;
+    max-height: 200px; /* Ensure images fit within the card */
+    object-fit: cover;
+}
+
+.product-card h2 {
+    font-size: 1.5rem;
+    margin-bottom: 10px;
+}
+
+.product-card p {
+    margin-bottom: 10px;
+}
+
+.product-card .btn {
+    margin-top: auto; /* Push button to the bottom */
+}

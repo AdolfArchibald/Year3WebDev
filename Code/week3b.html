@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+
     <script src="https://unpkg.com/vue@2.7.8/dist/vue.js"></script>
     <script src="products.js"></script>
     <title>Pet Store</title>
@@ -11,40 +14,57 @@
 <body>
     
     <div id="webstore">
-        <h1>{{ message }}</h1>
-        <button v-on:click="showCheckout">{{ itemInCart }} <span class="fa-solid fa-cart-plus"></span> Checkout</button>
-        <main>
 
+        <!-- Navbar -->
+        <nav class="navbar navbar-expand-lg navbar-custom">
+            <a class="navbar-brand" href="#">My Store</a>
+            <div class="collapse navbar-collapse">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <button class="btn btn-primary" @click="showCheckout">
+                            {{ itemInCart }} <span class="fa-solid fa-cart-plus"></span> Checkout
+                        </button>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- Header Box -->
+        <div class="header-box">
+            <h1>{{ message }}</h1>
+        </div>
+
+        <!-- <h1>{{ message }}</h1>
+        <button v-on:click="showCheckout">{{ itemInCart }} <span class="fa-solid fa-cart-plus"></span> Checkout</button> -->
+
+        <main class="container mt-5">
             <div v-if="showProduct">
-
-                <div v-for="product in sortedProducts">
-                    <figure>
-                        <img v-bind:src="product.image" alt="Cat Image" width="200px" height="200px">
-                    </figure>
-        
-                    <h2 v-text:src="product.title"></h2>
-                    <p v-text:src="product.description"></p> <!-- Note that '{{ product.title }}' between tags will also work -->
-                    <p>Price: Rs{{ product.price }}</p>
-        
-                    <button v-on:click="addToCart(product)" v-if="canAddToCart(product)"> Add to cart</button>
-                    
-                    <span v-if='product.availableInventory === cartCount(product.id)'>All out!</span>
-                    <span v-else-if="product.availableInventory- cartCount(product.id) < 5">
-                        Only {{product.availableInventory- cartCount(product.id)}} left!
-                    </span>
-                    <span v-else>Buy now!</span>
-    
-                    <div v-else>
-                        <button disabled>Add to Cart</button>
-                        No more Product to Add. Supply Limited.
-                    </div>
-    
-                    <div>
-                        <span v-for='n in product.rating'>★</span>
-                        <span v-for='n in 5 -  product.rating'>☆</span>
+                <div class="row">
+                    <div class="col-md-4" v-for="product in sortedProducts" :key="product.id">
+                        <div class="product-card">
+                            <figure>
+                                <img :src="product.image" alt="Product Image" class="img-fluid">
+                            </figure>
+                            <h2>{{ product.title }}</h2>
+                            <p>{{ product.description }}</p>
+                            <p>Price: Rs{{ product.price }}</p>
+                            <button class="btn btn-primary" @click="addToCart(product)" v-if="canAddToCart(product)">Add to cart</button>
+                            <span v-if="product.availableInventory === cartCount(product.id)">All out!</span>
+                            <span v-else-if="product.availableInventory - cartCount(product.id) < 5">
+                                Only {{ product.availableInventory - cartCount(product.id) }} left!
+                            </span>
+                            <span v-else>Buy now!</span>
+                            <div v-else>
+                                <button class="btn btn-secondary" disabled>Add to Cart</button>
+                                No more Product to Add. Supply Limited.
+                            </div>
+                            <div>
+                                <span v-for="n in product.rating">★</span>
+                                <span v-for="n in 5 - product.rating">☆</span>
+                            </div>
+                        </div>
                     </div>
                 </div>
-                
             </div>
 
             <div v-else>
@@ -127,6 +147,12 @@
         </main>
 
     </div>
+
+    <!-- Vue and Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/vue@2"></script>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
     <script>
 
