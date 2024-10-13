@@ -49,6 +49,79 @@
 
             <div v-else>
                 <h1>Welcome to the Check Out Page</h1>
+                <h2>Enter your Information</h2>
+                
+                <p>
+                    <strong>First Name:</strong>
+                    <!-- This input field is bound to 'firstName' in the 'order' object -->
+                    <input v-model.trim="order.firstName"/>
+                </p>
+
+                <p>
+                    <strong>Last Name:</strong>
+                    <!-- This input field is bound to 'lastName' in the 'order' object -->
+                    <input v-model.trim="order.lastName"/>
+                </p>
+
+                <p>
+                    <strong>Address:</strong>
+                    <!-- This input field is bound to 'address' in the 'order' object -->
+                    <input v-model.trim="order.address"/>
+                </p>
+
+                <p>
+                    <strong>City:</strong>
+                    <!-- This input field is bound to 'city' in the 'order' object -->
+                    <input v-model.trim="order.city"/>
+                </p>
+
+                <p>
+                    <strong>State:</strong>
+                    <!-- This state field is bound to 'state' in the 'order' object -->
+                    <select v-model="order.state">
+                        <option disabled value="">State</option>
+                        <option v-for="(state, key) in states"
+                            v-bind:value="state">
+                            {{key}}
+                        </option>
+                    </select>
+                </p>
+
+                <p>
+                    <strong>Zip/Postal Code:</strong>
+                    <!-- This input field is bound to 'zip' in the 'order' object -->
+                    <input v-model.number="order.zip"/>
+                </p>
+
+                <p>
+                    <input type="checkbox" id="gift" value="true" v-model="order.gift" v-bind:true-value="order.sendGift"
+                    v-bind:false-value="order.dontSendGift">
+
+                    <label for="gift">Ship As Gift?</label>
+                </p>
+
+                <p>
+                    <input type="radio" id="home" value="Home" v-model="order.method">
+                    <label for="home">Home</label>
+                    <input type="radio" id="business" value="Business" v-model="order.method">
+                    <label for="business">Business</label>
+                </p>
+                
+                <!-- Display order information -->
+                <h2>Order Information</h2>
+
+                <p>First Name: {{order.firstName}}</p>
+                <p>Last Name: {{order.lastName}}</p>
+                <p>Address: {{order.address}}</p>
+                <p>City: {{order.city}}</p>
+                <p>Zip: {{order.zip}}</p>
+                <p>State: {{order.state}}</p>
+                <p>Method: {{order.method}}</p>
+                <p>Gift? {{order.gift}}</p>
+                
+                <!-- Submit button for user to confirm order -->
+                <button v-on:click="submitForm">Place Order</button>
+
             </div>
 
         </main>
@@ -61,18 +134,27 @@
             el: '#webstore',
             data: {
                 message: 'Welcome to my petstore', 
-                // product: {
-                //     id: 1001,
-                //     title: 'Cat Food 25 Lb bag',
-                //     description: 'Great cat food for your cat',
-                //     price: 1200,
-                //     image: 'images/catFood25lb.png',
-                //     availabilityInventory: 10,
-                //     rating: 3
-                // },
                 cart:[],
                 showProduct: true,
                 products: products,
+
+                order: {
+                    firstName: ``,
+                    lastName: ``,
+                    address: ``,
+                    city: ``,
+                    zip: ``,
+                    state: ``,
+                    method: `Home`,
+                    sendGift: `Send as a gift`,
+                    dontSendGift: `Do not send as a gift`
+                },
+                states: {
+                    AL: `Alabama`,
+                    AR: `Arizona`,
+                    CA: `California`,
+                    NV: `Nevada`
+                }
             },
             methods: {
                 addToCart(product)
@@ -100,6 +182,10 @@
                 canAddToCart(product) {
                     return product.availableInventory > this.cartCount(product.id);
                 },
+                submitForm()
+                {
+                    alert('Order submitted!');
+                }
             },
             computed: {
                 itemInCart()
@@ -114,7 +200,7 @@
                     // the comparison function that defines the order
                     function compare(a, b) {
                         if (a.price > b.price) return 1;
-                        if (a.price < b.price) return-1;
+                        if (a.price < b.price) return -1;
                         return 0;
                     }
 
