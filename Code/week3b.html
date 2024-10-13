@@ -45,22 +45,17 @@
                                 <img :src="product.image" alt="Product Image" class="img-fluid">
                             </figure>
 
-                            <h2>{{ product.title }}</h2>
-                            <p>{{ product.description }}</p>
+                            <h2>{{ product.subject }}</h2>
+                            <p>{{ product.location }}</p>
                             <p>Price: Rs{{ product.price }}</p>
 
                             <button class="btn btn-primary" @click="addToCart(product)" :disabled="!canAddToCart(product)">Add to cart</button>
 
-                            <span v-if="product.availableInventory === cartCount(product.id)">All out!</span>
-                            <span v-else-if="product.availableInventory - cartCount(product.id) < 5">
-                                Only {{ product.availableInventory - cartCount(product.id) }} left!
+                            <span v-if="product.spaces === cartCount(product.id)">Class Full</span>
+                            <span v-else-if="product.spaces - cartCount(product.id) < 5">
+                                Only {{ product.spaces - cartCount(product.id) }} Spaces Left!
                             </span>
-                            <span v-else>Buy now!</span>
-
-                            <!-- <div v-else>
-                                <button class="btn btn-secondary" disabled>Add to Cart</button>
-                                No more Product to Add. Supply Limited.
-                            </div> -->
+                            <span v-else> {{ product.spaces }} Spaces left</span>
 
                             <div>
                                 <span v-for="n in product.rating">★</span>
@@ -212,7 +207,7 @@
                     return count;
                 },
                 canAddToCart(product) {
-                    return product.availableInventory > this.cartCount(product.id);
+                    return product.spaces > this.cartCount(product.id);
                 },
                 submitForm()
                 {

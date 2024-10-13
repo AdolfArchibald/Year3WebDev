@@ -1,57 +1,119 @@
-
-
 let products = [
     {
         id:1001,
-        title:"Cat Food 25 lb bag",
-        description:"Irresisitible cat food for your cat",
+        subject:"Math",
+        location:"Irresisitible cat food for your cat",
         price: 20.00,
         image: "images/product-fullsize.png",
-        availableInventory: 3,
+        spaces: 5,
         rating:3
     },
     {
         id:1002,
-        title:"Cat House",
-        description:"Irresisitible cat House for your cat",
+        subject:"Math",
+        location:"Irresisitible cat House for your cat",
         price: 2000,
         image: "images/cat-house.jpg",
-        availableInventory: 5,
+        spaces: 5,
         rating:4
     },
     {
         id:1003,
-        title:"Cat Litter",
+        subject:"English",
+        location:"Oxford",
         price: 1000,
-        image: "images/cat-litter.jpg",
-        availableInventory: 9,
+        image: "images/feather.svg",
+        spaces: 5,
         rating:5
     },
     {
         id:1004,
-        title:"Laser Pointer",
-        description:"Irresisitible laser pointer for your cat",
+        subject:"French",
+        location:"Irresisitible laser pointer for your cat",
         price: 25.99,
         image: "images/laser-pointer.jpg",
-        availableInventory: 9,
+        spaces: 5,
         rating:4
     },
     {
         id:1005,
-        title:"Cat Toy Mindy Mouse",
-        description:"Irresisitible cat toy for your cat",
+        subject:"Physics",
+        location:"Irresisitible cat toy for your cat",
         price: 3.99,
         image: "images/Mindy_Mouse_cat_toy.jpg",
-        availableInventory: 5,
+        spaces: 5,
         rating:3
     },
     {
         id:1006,
-        title:"Cat Yarn",
-        description:"Irresisitible cat yarn for your cat",
+        subject:"Chemistry",
+        location:"Irresisitible cat yarn for your cat",
         price: 2.99,
         image: "images/yarn.jpg",
-        availableInventory: 3,
+        spaces: 5,
+        rating:2
+    },
+    {
+        id:1007,
+        subject:"Biology",
+        location:"Irresisitible cat yarn for your cat",
+        price: 2.99,
+        image: "images/yarn.jpg",
+        spaces: 5,
+        rating:2
+    },
+    {
+        id:1008,
+        subject:"Geography",
+        location:"Irresisitible cat yarn for your cat",
+        price: 2.99,
+        image: "images/yarn.jpg",
+        spaces: 5,
+        rating:2
+    },
+    {
+        id:1009,
+        subject:"Drama",
+        location:"Irresisitible cat yarn for your cat",
+        price: 2.99,
+        image: "images/yarn.jpg",
+        spaces: 5,
+        rating:2
+    },
+    {
+        id:1010,
+        subject:"Art",
+        location:"Irresisitible cat yarn for your cat",
+        price: 2.99,
+        image: "images/yarn.jpg",
+        spaces: 5,
+        rating:2
+    },
+    {
+        id:1011,
+        subject:"AP Maths",
+        location:"Irresisitible cat yarn for your cat",
+        price: 2.99,
+        image: "images/yarn.jpg",
+        spaces: 5,
+        rating:2
+    },
+    {
+        id:1012,
+        subject:"AP English",
+        location:"Irresisitible cat yarn for your cat",
+        price: 2.99,
+        image: "images/yarn.jpg",
+        spaces: 5,
+        rating:2
+    },
+    {
+        id:1013,
+        subject:"Biology",
+        location:"Irresisitible cat yarn for your cat",
+        price: 2.99,
+        image: "images/yarn.jpg",
+        spaces: 5,
         rating:2
     },
 
