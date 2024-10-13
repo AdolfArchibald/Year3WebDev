@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
+    <script src="https://unpkg.com/vue@2.7.8/dist/vue.js"></script>
+    <script src="products.js"></script>
+    <title>Pet Store</title>
+</head>
+<body>
+    
+    <div id="webstore">
+        <h1>{{ message }}</h1>
+        <button v-on:click="showCheckout">{{ itemInCart }} <span class="fa-solid fa-cart-plus"></span> Checkout</button>
+        <main>
+
+            <div v-if="showProduct">
+
+                <div v-for="product in sortedProducts">
+                    <figure>
+                        <img v-bind:src="product.image" alt="Cat Image" width="200px" height="200px">
+                    </figure>
+        
+                    <h2 v-text:src="product.title"></h2>
+                    <p v-text:src="product.description"></p> <!-- Note that '{{ product.title }}' between tags will also work -->
+                    <p>Price: Rs{{ product.price }}</p>
+        
+                    <button v-on:click="addToCart(product)" v-if="canAddToCart(product)"> Add to cart</button>
+                    
+                    <span v-if='product.availableInventory === cartCount(product.id)'>All out!</span>
+                    <span v-else-if="product.availableInventory- cartCount(product.id) < 5">
+                        Only {{product.availableInventory- cartCount(product.id)}} left!
+                    </span>
+                    <span v-else>Buy now!</span>
+    
+                    <div v-else>
+                        <button disabled>Add to Cart</button>
+                        No more Product to Add. Supply Limited.
+                    </div>
+    
+                    <div>
+                        <span v-for='n in product.rating'>★</span>
+                        <span v-for='n in 5 -  product.rating'>☆</span>
+                    </div>
+                </div>
+                
+            </div>
+
+            <div v-else>
+                <h1>Welcome to the Check Out Page</h1>
+            </div>
+
+        </main>
+
+    </div>
+
+    <script>
+
+        let webstore = new Vue({
+            el: '#webstore',
+            data: {
+                message: 'Welcome to my petstore', 
+                // product: {
+                //     id: 1001,
+                //     title: 'Cat Food 25 Lb bag',
+                //     description: 'Great cat food for your cat',
+                //     price: 1200,
+                //     image: 'images/catFood25lb.png',
+                //     availabilityInventory: 10,
+                //     rating: 3
+                // },
+                cart:[],
+                showProduct: true,
+                products: products,
+            },
+            methods: {
+                addToCart(product)
+                {
+                    this.cart.push(product.id);
+                },
+                showCheckout()
+                {
+                    if (this.showProduct) {
+                        this.showProduct = false;
+                    }
+                    else {
+                        this.showProduct = true;
+                    }
+                },
+                cartCount(id) {
+                    let count = 0;
+                    for(let i = 0; i < this.cart.length; i++) {
+                        if (this.cart[i] === id) {
+                            count++;
+                        }
+                    }
+                    return count;
+                },
+                canAddToCart(product) {
+                    return product.availableInventory > this.cartCount(product.id);
+                },
+            },
+            computed: {
+                itemInCart()
+                {
+                    return this.cart.length || "";
+                },
+                itemsLeft() {
+                    return this.product.availabilityInventory - this.itemInCart;
+                },
+                sortedProducts() {
+
+                    // the comparison function that defines the order
+                    function compare(a, b) {
+                        if (a.price > b.price) return 1;
+                        if (a.price < b.price) return-1;
+                        return 0;
+                    }
+
+                    // sort the 'products' array and return it
+                    return this.products.sort(compare);
+                }
+            }
+        });
+
+    </script>
+
+</body>
+</html>
