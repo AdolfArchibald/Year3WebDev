@@ -4,7 +4,7 @@ let products = [
         subject:"Mathematics",
         location:"Irresisitible cat food for your cat",
         price: 20.00,
-        image: "images/calculator.svg",
+        image: "static/images/calculator.svg",
         spaces: 5,
         rating:3
     },
@@ -13,7 +13,7 @@ let products = [
         subject:"Mathematics",
         location:"Irresisitible cat House for your cat",
         price: 2000,
-        image: "images/calculator.svg",
+        image: "static/images/calculator.svg",
         spaces: 5,
         rating:4
     },
@@ -22,7 +22,7 @@ let products = [
         subject:"English",
         location:"Oxford",
         price: 1000,
-        image: "images/journal.svg",
+        image: "static/images/journal.svg",
         spaces: 5,
         rating:5
     },
@@ -31,7 +31,7 @@ let products = [
         subject:"French",
         location:"Irresisitible laser pointer for your cat",
         price: 25.99,
-        image: "images/feather.svg",
+        image: "static/images/feather.svg",
         spaces: 5,
         rating:4
     },
@@ -40,7 +40,7 @@ let products = [
         subject:"Physics",
         location:"Irresisitible cat toy for your cat",
         price: 3.99,
-        image: "images/rocket-takeoff.svg",
+        image: "static/images/rocket-takeoff.svg",
         spaces: 5,
         rating:3
     },
@@ -49,7 +49,7 @@ let products = [
         subject:"Chemistry",
         location:"Irresisitible cat yarn for your cat",
         price: 2.99,
-        image: "images/moisture.svg",
+        image: "static/images/moisture.svg",
         spaces: 5,
         rating:2
     },
@@ -58,7 +58,7 @@ let products = [
         subject:"Biology",
         location:"Irresisitible cat yarn for your cat",
         price: 2.99,
-        image: "images/heart-pulse.svg",
+        image: "static/images/heart-pulse.svg",
         spaces: 5,
         rating:2
     },
@@ -67,7 +67,7 @@ let products = [
         subject:"Geography",
         location:"Irresisitible cat yarn for your cat",
         price: 2.99,
-        image: "images/geo-alt.svg",
+        image: "static/images/geo-alt.svg",
         spaces: 5,
         rating:2
     },
@@ -76,7 +76,7 @@ let products = [
         subject:"Drama",
         location:"Irresisitible cat yarn for your cat",
         price: 2.99,
-        image: "images/chat-quote.svg",
+        image: "static/images/chat-quote.svg",
         spaces: 5,
         rating:2
     },
@@ -85,7 +85,7 @@ let products = [
         subject:"Art",
         location:"Irresisitible cat yarn for your cat",
         price: 2.99,
-        image: "images/brush.svg",
+        image: "static/images/brush.svg",
         spaces: 5,
         rating:2
     },
@@ -94,7 +94,7 @@ let products = [
         subject:"Advanced Maths",
         location:"Irresisitible cat yarn for your cat",
         price: 2.99,
-        image: "images/infinity.svg",
+        image: "static/images/infinity.svg",
         spaces: 5,
         rating:2
     },
@@ -103,7 +103,7 @@ let products = [
         subject:"Advanced English",
         location:"Irresisitible cat yarn for your cat",
         price: 2.99,
-        image: "images/journals.svg",
+        image: "static/images/journals.svg",
         spaces: 5,
         rating:2
     },
@@ -112,7 +112,7 @@ let products = [
         subject:"Biology",
         location:"Irresisitible cat yarn for your cat",
         price: 2.99,
-        image: "images/heart-pulse.svg",
+        image: "static/images/heart-pulse.svg",
         spaces: 5,
         rating:2
     },
