@@ -4,6 +4,7 @@ let webstore = new Vue({
         message: 'Browse Available Lessons!', 
         cart:[],
         showProduct: true,
+        filterMenuVisible: false,
         products: products,
 
         order: {
@@ -28,6 +29,9 @@ let webstore = new Vue({
         addToCart(product)
         {
             this.cart.push(product.id);
+        },
+        toggleFilterMenu() {
+            this.filterMenuVisible = !this.filterMenuVisible;
         },
         showCheckout()
         {
