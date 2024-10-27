@@ -4,7 +4,7 @@
     padding: 15px;
     margin: 20px auto;
     text-align: center;
-    width: 80%;
+    width: 50%;
     background-color: #f8f9fa;
 }
 
@@ -25,15 +25,18 @@
     margin-right: 0.5rem;
 }
 
+#filterButton {
+    position: relative;
+}
+
 #filterMenu {
     position: absolute;
-    top: 20%;
-    left: 20%;
+    top: 100%; /* Position below the button */
+    left: 5%; /* Aligns with the left edge of the button */
     z-index: 1000;
-    float: left;
     min-width: 10rem;
     padding: 0.5rem 0;
-    margin: 0.125rem 0 0;
+    margin: 0;
     font-size: 1rem;
     color: #212529;
     text-align: left;
@@ -42,6 +45,29 @@
     background-clip: padding-box;
     border: 1px solid rgba(0, 0, 0, 0.15);
     border-radius: 0.25rem;
+}
+
+#filterMenu h5 {
+    margin: 0 0 0.5rem 0;
+    padding-left: 1rem;
+    text-decoration: underline;
+}
+
+#filterMenu a.dropdown-item {
+    display: block;
+    padding: 0.5rem 1rem;
+    color: #212529;
+    text-decoration: none;
+}
+
+#filterMenu li {
+    display: flex;
+    align-items: center;
+    padding-left: 1rem;
+}
+
+#filterMenu input[type="radio"] {
+    margin-right: 0.5rem;
 }
 
 .product-card {

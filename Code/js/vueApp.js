@@ -5,6 +5,7 @@ let webstore = new Vue({
         cart:[],
         showProduct: true,
         filterMenuVisible: false,
+        filterStatus: '',
         products: products,
 
         order: {
@@ -30,8 +31,14 @@ let webstore = new Vue({
         {
             this.cart.push(product.id);
         },
-        toggleFilterMenu() {
+        toggleFilterMenu()
+        {
             this.filterMenuVisible = !this.filterMenuVisible;
+        },
+        setFilterStatus(status)
+        {
+            this.filterStatus = status;
+            console.log(this.filterStatus);
         },
         showCheckout()
         {
@@ -42,7 +49,8 @@ let webstore = new Vue({
                 this.showProduct = true;
             }
         },
-        cartCount(id) {
+        cartCount(id)
+        {
             let count = 0;
             for(let i = 0; i < this.cart.length; i++) {
                 if (this.cart[i] === id) {
@@ -51,7 +59,8 @@ let webstore = new Vue({
             }
             return count;
         },
-        canAddToCart(product) {
+        canAddToCart(product)
+        {
             return product.spaces > this.cartCount(product.id);
         },
         submitForm()
@@ -64,10 +73,12 @@ let webstore = new Vue({
         {
             return this.cart.length || "";
         },
-        itemsLeft() {
+        itemsLeft()
+        {
             return this.product.availabilityInventory - this.itemInCart;
         },
-        sortedProducts() {
+        sortedProducts()
+        {
 
             // the comparison function that defines the order
             function compare(a, b) {
