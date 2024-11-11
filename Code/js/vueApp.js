@@ -7,6 +7,7 @@ let webstore = new Vue({
         showProduct: true,
         filterMenuVisible: false,
         filterStatus: '',
+        sortedAscending: true,
         products: products,
 
         order: {
@@ -74,17 +75,30 @@ let webstore = new Vue({
         },
         sortedProducts()
         {
-
-            // the comparison function that defines the order
-            function compare(a, b) {
-                if (a.price > b.price) return 1;
-                if (a.price < b.price) return -1;
-                return 0;
+            if (this.filterStatus === 'price' || this.filterStatus === '') {
+                return this.products.sort((a, b) => this.sortedAscending ? a.price - b.price : b.price - a.price);
             }
-
-            // sort the 'products' array and return it
-            return this.products.sort(compare);
-        },
+        
+            if (this.filterStatus === 'location') {
+                return this.products.sort((a, b) => {
+                    return this.sortedAscending ? a.location.localeCompare(b.location) : b.location.localeCompare(a.location);
+                });
+            }
+        
+            if (this.filterStatus === 'availability') {
+                return this.products.sort((a, b) => {
+                    return this.sortedAscending ? (a.spaces - this.cartCount(a.id)) - (b.spaces - this.cartCount(b.id)) : (b.spaces - this.cartCount(b.id)) - (a.spaces - this.cartCount(a.id));
+                });
+            }
+        
+            if (this.filterStatus === 'subject') {
+                return this.products.sort((a, b) => {
+                    return this.sortedAscending ? a.subject.localeCompare(b.subject) : b.subject.localeCompare(a.subject);
+                });
+            }
+        
+            return this.products;
+        },        
         cartProducts()
         {
             return this.cart.map(id => this.products.find(product => product.id === id));

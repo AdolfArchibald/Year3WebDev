@@ -30,12 +30,12 @@
                     <a class="dropdown-item" @click.prevent="setFilterStatus('price')">Price</a>
                     <a class="dropdown-item" @click.prevent="setFilterStatus('subject')">Subject</a>
                     <li>
-                      <input type="radio" id="ascending" name="sortOrder" value="ASCENDING">
-                      <label for="ascending">Ascending</label>
+                        <input type="radio" id="ascending" name="sortOrder" :value="true" v-model="sortedAscending">
+                        <label for="ascending">Ascending</label>
                     </li>
                     <li>
-                      <input type="radio" id="descending" name="sortOrder" value="DESCENDING">
-                      <label for="descending">Descending</label>
+                        <input type="radio" id="descending" name="sortOrder" :value="false" v-model="sortedAscending">
+                        <label for="descending">Descending</label>
                     </li>
                 </div>
             </div>
