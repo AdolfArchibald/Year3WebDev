@@ -102,3 +102,32 @@
 .product-card .btn {
     margin-top: auto; /* Push button to the bottom */
 }
+
+.checkoutListImg {
+    max-width: 100%;
+    height: auto;
+    width: 50%;
+    margin-left: 30%;
+}
+
+.btn-danger { 
+    background-color: #dc3545;
+    border-color: #dc3545;
+}
+
+.btn-danger:hover { 
+    background-color: #e75e6b;
+    border-color: #ff0019; 
+}
+
+.checkoutItemsRow {
+    align-items: center;
+}
+
+.informationHeading {
+    margin-top: 5%;
+}
+
+.checkoutButton {
+    margin-bottom: 5%;
+}

@@ -1,7 +1,8 @@
 let webstore = new Vue({
     el: '#webstore',
     data: {
-        message: 'Browse Available Lessons!', 
+        message: 'Browse Available Lessons!',
+        checkoutMessage: 'Checkout', 
         cart:[],
         showProduct: true,
         filterMenuVisible: false,
@@ -10,21 +11,8 @@ let webstore = new Vue({
 
         order: {
             firstName: ``,
-            lastName: ``,
-            address: ``,
-            city: ``,
-            zip: ``,
-            state: ``,
-            method: `Home`,
-            sendGift: `Send as a gift`,
-            dontSendGift: `Do not send as a gift`
+            phoneNum: ``,
         },
-        states: {
-            AL: `Alabama`,
-            AR: `Arizona`,
-            CA: `California`,
-            NV: `Nevada`
-        }
     },
     methods: {
         addToCart(product)
@@ -63,6 +51,13 @@ let webstore = new Vue({
         {
             return product.spaces > this.cartCount(product.id);
         },
+        removeFromCart(id)
+        {
+            const index = this.cart.lastIndexOf(id);
+            if (index !== -1) {
+                this.cart.splice(index, 1); // Remove one instance of the product ID from the end of the list
+            }
+        },
         submitForm()
         {
             alert('Order submitted!');
@@ -89,6 +84,28 @@ let webstore = new Vue({
 
             // sort the 'products' array and return it
             return this.products.sort(compare);
+        },
+        cartProducts()
+        {
+            return this.cart.map(id => this.products.find(product => product.id === id));
+        },
+        totalPrice()
+        { 
+            return this.cartProducts.reduce((total, product) => total + product.price, 0); 
+        },
+        enableCheckout()
+        {
+            // Check if the name contains only letters and spaces
+            const namePattern = /^[A-Za-z\s]+$/;
+            const isValidName = namePattern.test(this.order.firstName);
+        
+            // Remove spaces from the phone number and check if it contains only numbers and is longer than 5 characters
+            const phoneNumber = this.order.phoneNum.replace(/\s+/g, '');
+            const phonePattern = /^[0-9]+$/;
+            const isValidPhone = phonePattern.test(phoneNumber) && phoneNumber.length >= 5;
+        
+            // Return true if both name and phone number are valid
+            return isValidName && isValidPhone;
         }
     }
 });
