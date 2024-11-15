@@ -19,13 +19,26 @@ let webstore = new Vue({
         this.fetchData();
     },
     methods: {
-        async fetchData()
-        {
+        async fetchData() {
+            console.log("Trying to get data");
             try {
                 // Fetch the data
                 const response = await fetch('https://year3webdevserver.onrender.com/lessons');
+        
+                // Check if the response is successful (status 200-299)
+                if (!response.ok) {
+                    throw new Error(`HTTP error! Status: ${response.status}`);
+                }
+        
+                // Parse the JSON data from the response
+                const data = await response.json();
+        
+                // Update the products with the lessons received
+                this.products = data;
+        
+                // Log the fetched data to the console
+                console.log(this.products);
 
-                this.products = response;
             }
             catch (error) {
                 console.log("Error fetching data", error);
