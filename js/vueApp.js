@@ -23,7 +23,7 @@ let webstore = new Vue({
             console.log("Trying to get data");
             try {
                 // Fetch the data
-                const response = await fetch('https://year3webdevserver.onrender.com/lessons');
+                const response = await fetch('https://year3webdevserver.onrender.com//lessons');
         
                 // Check if the response is successful (status 200-299)
                 if (!response.ok) {
@@ -42,6 +42,57 @@ let webstore = new Vue({
             }
             catch (error) {
                 console.log("Error fetching data", error);
+            }
+        },
+        async postOrder() {
+            // Building the order
+            // First count the lesson id's present in the cart
+            let idCounts = {};
+            this.cart.forEach(id => {
+                // If the ID already exists in the idCounts object, increment its count
+                if (idCounts[id]) {
+                    idCounts[id]++;
+                } 
+                else {
+                    // If the ID is not in the object, initialize its count to 1
+                    idCounts[id] = 1;
+                }
+            });
+
+            // Make the lessons array (mapping each id to an object with fields "id" and "spaces")
+            const orderArray = Object.keys(idCounts).map(id => ({
+                id: parseInt(id),
+                spaces: idCounts[id]
+            }));
+
+            // Make the full object to send
+            const order = {
+                name: this.order.firstName,
+                phoneNumber: this.order.phoneNum,
+                lessons: orderArray
+            };
+
+            // Fetch the endpoint and send the order object
+            try {
+                const response = await fetch('https://year3webdevserver.onrender.com//newOrder', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json' 
+                    },
+                    body: JSON.stringify(order)
+                });
+
+                // Check if the response is successful (status code 2xx)
+                if (!response.ok) {
+                    throw new Error(`Error posting order: ${response.statusText}`);
+                }
+            
+                // Parse the response
+                const responseData = await response.json();
+                console.log("Order posted successfully:", responseData);
+            }
+            catch (error) {
+                console.error("Failed to post order:", error);
             }
         },
         addToCart(product)
@@ -146,8 +197,8 @@ let webstore = new Vue({
             const phonePattern = /^[0-9]+$/;
             const isValidPhone = phonePattern.test(phoneNumber) && phoneNumber.length >= 5;
         
-            // Return true if both name and phone number are valid
-            return isValidName && isValidPhone;
+            // Return true if both name and phone number are valid, and ensuring there is also at least 1 item in the cart
+            return isValidName && isValidPhone && this.cart.length > 0;
         }
     }
 });
