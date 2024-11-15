@@ -23,7 +23,7 @@ let webstore = new Vue({
             console.log("Trying to get data");
             try {
                 // Fetch the data
-                const response = await fetch('https://year3webdevserver.onrender.com//lessons');
+                const response = await fetch('https://year3webdevserver.onrender.com/lessons');
         
                 // Check if the response is successful (status 200-299)
                 if (!response.ok) {
@@ -74,12 +74,14 @@ let webstore = new Vue({
 
             // Fetch the endpoint and send the order object
             try {
-                const response = await fetch('https://year3webdevserver.onrender.com//newOrder', {
+                const response = await fetch('https://year3webdevserver.onrender.com/newOrder', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json' 
                     },
                     body: JSON.stringify(order)
+
+                    
                 });
 
                 // Check if the response is successful (status code 2xx)
@@ -198,7 +200,7 @@ let webstore = new Vue({
             const isValidPhone = phonePattern.test(phoneNumber) && phoneNumber.length >= 5;
         
             // Return true if both name and phone number are valid, and ensuring there is also at least 1 item in the cart
-            return isValidName && isValidPhone && this.cart.length > 0;
+            return isValidName && isValidPhone && this.itemInCart() > 0;
         }
     }
 });
