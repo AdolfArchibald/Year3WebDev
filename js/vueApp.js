@@ -8,14 +8,29 @@ let webstore = new Vue({
         filterMenuVisible: false,
         filterStatus: '',
         sortedAscending: true,
-        products: products,
+        products: [],
 
         order: {
             firstName: ``,
             phoneNum: ``,
         },
     },
+    created () {
+        this.fetchData();
+    },
     methods: {
+        async fetchData()
+        {
+            try {
+                // Fetch the data
+                const response = await fetch('https://year3webdevserver.onrender.com/lessons');
+
+                this.products = response;
+            }
+            catch (error) {
+                console.log("Error fetching data", error);
+            }
+        },
         addToCart(product)
         {
             this.cart.push(product.id);
