@@ -23,7 +23,7 @@ let webstore = new Vue({
             console.log("Trying to get data");
             try {
                 // Fetch the data
-                const response = await fetch('https://year3webdevserver.onrender.com/lessons');
+                const response = await fetch('http://localhost:3000/lessons');
         
                 // Check if the response is successful (status 200-299)
                 if (!response.ok) {
@@ -74,7 +74,7 @@ let webstore = new Vue({
 
             // Fetch the endpoint and send the order object
             try {
-                const response = await fetch('https://year3webdevserver.onrender.com/newOrder', {
+                const response = await fetch('http://localhost:3000/newOrder', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json' 
@@ -91,7 +91,7 @@ let webstore = new Vue({
             
                 // Parse the response
                 const responseData = await response.json();
-                console.log("Order posted successfully:", responseData);
+                alert(responseData.message);
             }
             catch (error) {
                 console.error("Failed to post order:", error);
@@ -140,10 +140,6 @@ let webstore = new Vue({
                 this.cart.splice(index, 1); // Remove one instance of the product ID from the end of the list
             }
         },
-        submitForm()
-        {
-            alert('Order submitted!');
-        }
     },
     computed: {
         itemInCart()
@@ -200,7 +196,7 @@ let webstore = new Vue({
             const isValidPhone = phonePattern.test(phoneNumber) && phoneNumber.length >= 5;
         
             // Return true if both name and phone number are valid, and ensuring there is also at least 1 item in the cart
-            return isValidName && isValidPhone && this.itemInCart() > 0;
+            return isValidName && isValidPhone && this.cart.length > 0;
         }
     }
 });
