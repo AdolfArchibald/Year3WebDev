@@ -92,9 +92,47 @@ let webstore = new Vue({
                 // Parse the response
                 const responseData = await response.json();
                 alert(responseData.message);
+
+                // Update the lessons after the order was successful
+                this.updateLessons(orderArray);
             }
             catch (error) {
                 console.error("Failed to post order:", error);
+            }
+        },
+        async updateLessons(lessonUpdates) 
+        {
+            try {
+                // Build the body using the lessonUpdates
+                const requestBody = {
+                    spaceNeeded: lessonUpdates 
+                };
+        
+                // Send a PUT request with requestBody as the body
+                const response = await fetch('http://localhost:3000/updateLessons', {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify(requestBody),
+                });
+        
+                // Check if the response is successful
+                if (!response.ok) {
+                    const errorData = await response.json();
+                    console.error('Error updating lessons:', errorData);
+                    throw new Error(`Failed to update lessons: ${errorData.error || response.statusText}`);
+                }
+        
+                // Parse the JSON response from the backend
+                const responseData = await response.json();
+                alert('Lessons updated successfully:', responseData);
+                return responseData;
+        
+            } 
+            catch (error) {
+                console.error('Error in updateLessons function:', error);
+                alert('Failed to update lessons. Please try again.');
             }
         },
         addToCart(product)
