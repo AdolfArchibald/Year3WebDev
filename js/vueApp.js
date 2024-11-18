@@ -23,7 +23,7 @@ let webstore = new Vue({
             console.log("Trying to get data");
             try {
                 // Fetch the data
-                const response = await fetch('http://localhost:3000/lessons');
+                const response = await fetch('https://year3webdevserver.onrender.com/lessons');
         
                 // Check if the response is successful (status 200-299)
                 if (!response.ok) {
@@ -74,7 +74,7 @@ let webstore = new Vue({
 
             // Fetch the endpoint and send the order object
             try {
-                const response = await fetch('http://localhost:3000/newOrder', {
+                const response = await fetch('https://year3webdevserver.onrender.com/newOrder', {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json' 
@@ -109,7 +109,7 @@ let webstore = new Vue({
                 };
         
                 // Send a PUT request with requestBody as the body
-                const response = await fetch('http://localhost:3000/updateLessons', {
+                const response = await fetch('https://year3webdevserver.onrender.com/updateLessons', {
                     method: 'PUT',
                     headers: {
                         'Content-Type': 'application/json',
