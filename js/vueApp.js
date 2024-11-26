@@ -94,7 +94,14 @@ let webstore = new Vue({
                 alert(responseData.message);
 
                 // Update the lessons after the order was successful
-                this.updateLessons(orderArray);
+                await this.updateLessons(orderArray);
+
+                // Clear the cart and return to shopping page and refresh
+                this.cart = [];
+                this.showProduct = true;
+                
+                // Refresh the page by replacing the URL with itself
+                location.replace(location.href);
             }
             catch (error) {
                 console.error("Failed to post order:", error);
@@ -126,7 +133,7 @@ let webstore = new Vue({
         
                 // Parse the JSON response from the backend
                 const responseData = await response.json();
-                alert('Lessons updated successfully:', responseData);
+                console.log('Lessons updated successfully:', responseData);
                 return responseData;
         
             } 
